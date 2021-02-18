@@ -25,11 +25,15 @@ const SearchSuggest = ({
 		getComboboxProps,
 		highlightedIndex,
 		getItemProps,
-		openMenu
+		openMenu,
+		selectItem
 	} = useCombobox({
 		items,
 		onSelectedItemChange: ({selectedItem}) => {
+			if (!selectedItem) return;
+
 			history.push(getArtistRoute(selectedItem.id));
+			selectItem(null);
 			// setValue(selectedItem.name); //@todo
 		}
 	});
