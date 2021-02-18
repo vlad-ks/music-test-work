@@ -1,0 +1,70 @@
+@import "src/scss/_common/common";
+
+.page,
+.sideBar,
+.main,
+.header,
+.footer {
+  //border: 1px solid white; //@todo: debug
+}
+
+.page {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100%;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+
+  @include media('>=lg') {
+    height: rem($header_height);
+  }
+}
+
+.footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 100;
+  height: rem($footer_height--sm);
+
+  @include media('>=lg') {
+    height: rem($footer_height);
+  }
+}
+
+.mainWrap {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.sideBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 90vw;
+  z-index: 100;
+  transform: translateX(-100%);
+  background: $color-ebony;
+
+  @include media('>=lg') {
+    padding-top: rem($header_height);
+    width: rem($sidebar-width);
+    transform: translateX(0);
+  }
+}
+
+.main {
+  padding: rem($main-cont_p-tb--sm) rem($main-cont_p-rl--sm);
+
+  @include media('>=sm') {
+    padding: rem($main-cont_p-t) rem($main-cont_p-rl) 0;
+  }
+
+  @include media('>=lg') {
+    padding: rem($main-cont_p-t) rem($main-cont_p-r) 0 rem($sidebar-width + $main-cont_p-l);
+  }
+}

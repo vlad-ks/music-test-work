@@ -1,0 +1,1 @@
+export const ERROR_REQ_TEXT = 'Oops! Something went wrong. Please reload the page and try again.';

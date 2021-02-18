@@ -1,0 +1,27 @@
+// Fix Chrome Flicker
+@mixin ex_chrome-flicker {
+	-webkit-backface-visibility: hidden;
+	-webkit-perspective: 1000;
+	-webkit-transform-style: preserve-3d;
+}
+
+%ex_chrome-flicker {
+	@include ex_chrome-flicker;
+}
+
+
+// Disable Transition Recursively
+@mixin ex_disable-ts {
+	* {
+		transition: none;
+
+		&:before,
+		&:after {
+			transition: none;
+		}
+	}
+}
+
+%ex_disable-ts {
+	@include ex_chrome-flicker;
+}

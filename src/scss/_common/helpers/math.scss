@@ -1,0 +1,61 @@
+// Positive or negative integer exponents
+@function pow($number, $exponent) {
+	$value: 1;
+
+	@if $exponent > 0 {
+		@for $i from 1 through $exponent {
+			$value: $value * $number;
+		}
+	} @else if $exponent < 0 {
+		@for $i from 1 through -$exponent {
+			$value: $value / $number;
+		}
+	}
+
+	@return $value;
+}
+
+// Addition
+@function math_add ($val1, $val2) {
+  $unit: get_unit_1($val1);
+  $val1: strip-unit($val1);
+  $val2: strip-unit($val2);
+
+  @return ($val1 + $val2) * $unit;
+}
+
+// Subtraction
+@function math_sub ($val1, $val2) {
+  $unit: get_unit_1($val1);
+  $val1: strip-unit($val1);
+  $val2: strip-unit($val2);
+
+  @return ($val1 - $val2) * $unit;
+}
+
+// Multiplication
+@function math_mult ($val1, $val2) {
+  $unit: get_unit_1($val1);
+  $val1: strip-unit($val1);
+  $val2: strip-unit($val2);
+
+  @return $val1 * $val2 * $unit;
+}
+
+// Division
+@function math_divsn ($val1, $val2) {
+  $unit: get_unit_1($val1);
+  $val1: strip-unit($val1);
+  $val2: strip-unit($val2);
+
+  @return ($val1 / $val2) * $unit;
+}
+
+// Remainder
+@function math_remndr ($val1, $val2) {
+  $unit: get_unit_1($val1);
+  $val1: strip-unit($val1);
+  $val2: strip-unit($val2);
+
+  @return ($val1 % $val2) * $unit;
+}

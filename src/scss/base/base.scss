@@ -1,0 +1,137 @@
+/* # Base
+   ========================================================================== */
+// page
+html {
+  font-size: $fs-root / $fs-browser * 100%;
+  line-height: $lh-root;
+  box-sizing: border-box;
+  text-shadow: rgba(0, 0, 0, 0.01) 0 0 1px;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  -webkit-font-variant-ligatures: none;
+  /* Font varient */
+  font-variant-ligatures: none;
+  -moz-osx-font-smoothing: grayscale;
+  /* Smoothing */
+  text-rendering: optimizeLegibility;
+  /* Adjust font size */
+  -webkit-text-size-adjust: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  //font-family: $ff-base;
+  //font-weight: $fw-base--reg;
+  //line-height: $lh-base;
+  //font-size: 1em;
+  font-size: $fs-body / $fs-root * 1em;
+  position: relative;
+  overflow-x: hidden;
+  //overflow: hidden;
+  counter-reset: item;
+  color: $color-text;
+  background-color: $color-body;
+}
+
+
+// titles
+//h1, .h1,
+//h2, .h2,
+//h3, .h3,
+//h4, .h4,
+//h5, .h5,
+//h6, .h6{
+//  font-weight: inherit;
+//  line-height: $lh-base;
+//
+//  margin-top: vr(1);
+//  margin-bottom: vr(1);
+//}
+//
+//h1, .h1 {
+//  font-size: rem($fs-h1);
+//}
+//
+//h2, .h2 {
+//  font-size: rem($fs-h2);
+//}
+//
+//h3, .h3 {
+//  font-size: rem($fs-h3);
+//}
+//
+//h4, .h4 {
+//  font-size: rem($fs-h4);
+//}
+//
+//h5, .h5 {
+//  font-size: rem($fs-h5);
+//}
+//
+//h6, .h6 {
+//  font-size: rem($fs-h6);
+//}
+
+
+// paragraph
+//p {
+//  margin-bottom: vr(1);
+//}
+
+//.p-lead {
+//  font-size: rem($fs-lead);
+//  line-height: $lh-lead;
+//}
+
+//small,
+//.p-small {
+//  font-size: rem($fs-sm);
+//  line-height: $lh-sm;
+//}
+
+
+// list
+//ul,
+//ol {
+//  margin-top: vr(1);
+//  margin-bottom: vr(1);
+//}
+
+
+// links
+//a {
+//  color: $color-lead;
+//  text-decoration: none;
+//  transition: all $ts-base;
+//
+//  &:hover,
+//  &:focus {
+//    text-decoration: none;
+//  }
+//}
+
+
+// images
+img {
+  max-width: 100%;
+}
+
+
+// forms
+button,
+input,
+optgroup,
+select,
+textarea {
+  //font-family: inherit;
+  //line-height: inherit;
+}
+
+textarea {
+  resize: vertical;
+}

@@ -1,0 +1,9 @@
+// Full width (viewport)
+@mixin ex_full-vw {
+  width: 100vw;
+  margin-left: calc((100vw - 100%) * -0.5);
+}
+
+%ex_full-vw {
+  @include ex_full-vw;
+}

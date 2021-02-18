@@ -1,0 +1,72 @@
+@use "imports/spectre-vars.import";
+
+
+$fs-browser: 16px; // needed for breakpoints, $font-size, etc...
+
+
+// Colors
+$color-mirage: #181E30;
+$color-ebony: #0F152B;
+$color-fern: #5ABC61;
+$color-mandy: #E3556D;
+$color-manatee: #8B8E97;
+$color-white: #FFFFFF;
+
+$color-primary: $color-fern;
+$color-success: $color-fern;
+$color-error: $color-mandy;
+
+$color-body: $color-mirage;
+$color-text: $color-white;
+
+// Typography
+//$ff-base: 'TTCommons', serif;
+
+//$fw-base--reg: 400;
+//$fw-base--semi: 600;
+//$fw-lead--bold: 700;
+
+//$fs-h1: 28px;
+//$fs-h2: 24px;
+//$fs-h3: 20px;
+//$fs-h4: 18px;
+//$fs-h5: 15px;
+//$fs-h6: 13px;
+
+
+// Breakpoint system
+$breakpoints: (
+        xs: rem(spectre-vars.$size-xs, $fs-browser),
+        sm: rem(spectre-vars.$size-sm, $fs-browser),
+        md: rem(spectre-vars.$size-md, $fs-browser),
+        lg: rem(spectre-vars.$size-lg, $fs-browser),
+        xl: rem(spectre-vars.$size-xl, $fs-browser),
+        xxl: rem(spectre-vars.$size-2x, $fs-browser)
+);
+
+
+// Grid
+
+
+// Transitions
+$ts-base: 0.3s ease;
+$ts-base--fs: 0.125s ease;
+
+
+// Layout
+$sidebar-width: 352px;
+
+$header_height: 84px;
+
+$footer_height: 96px;
+$footer_height--sm: 64px;
+
+$main-cont_p-t: 56px;
+$main-cont_p-b: 80px;
+$main-cont_p-tb--sm: 20px;
+
+$main-cont_p-rl: 64px;
+$main-cont_p-r: 64px;
+$main-cont_p-l: 48px;
+
+$main-cont_p-rl--sm: 16px;

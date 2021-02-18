@@ -1,0 +1,12 @@
+@import "src/scss/_common/common";
+
+.loader {
+  height: 100%;
+
+  &:after {
+    color: $color-fern;
+    border-color: $color-fern !important;
+    border-right-color: transparent !important;
+    border-top-color: transparent !important;
+  }
+}

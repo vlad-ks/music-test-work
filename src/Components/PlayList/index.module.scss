@@ -1,0 +1,33 @@
+@import "src/scss/_common/common";
+
+.wrap {}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0 rem(24px);
+
+  @include media('>=md') {
+    margin: 0 0 rem(40px);
+  }
+}
+
+.title {
+  font-size: rem(28px);
+  font-weight: bold;
+  color: $color-white;
+  margin: 0;
+}
+
+.btn {
+  @extend %ex_res-btn;
+
+  padding: 0;
+  font-size: rem(24px);
+  line-height: 1;
+  color: $color-white;
+  background: transparent;
+}
+
+.list {}

@@ -1,0 +1,13 @@
+@import "src/scss/_common/common";
+
+.wrap {
+  text-align: center;
+
+  @include media('>=lg') {
+    margin-top: rem(40px);
+  }
+
+  img {
+    max-height: rem(360px);
+  }
+}

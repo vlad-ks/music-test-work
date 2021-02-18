@@ -1,0 +1,11 @@
+// Reset SVG Styles
+@mixin ex_res-svg {
+	display: inline-block;
+	fill: currentColor;
+	stroke: currentColor;
+	stroke-width: 0;
+}
+
+%ex_res-svg {
+	@include ex_res-svg;
+}

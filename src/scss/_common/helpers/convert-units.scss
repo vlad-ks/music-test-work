@@ -1,0 +1,69 @@
+// Convert Px to Rem units (depends on $fs-root)
+// @access public
+// @param {String|Number} $size - size value ('16px', 16, 16px)
+// @param {String|Number} $context - context size value ('16px', 16, 16px)
+// @param {Boolean} $unit = true - set 'rem' unit
+// @return {String} - value in rem
+@function rem($size, $context: null, $unit: true) {
+	@if $context {
+	  $context: $context;
+	} @else {
+	  $context: $fs-root;
+	}
+
+	@if (unitless($size)) {
+		$size: $size * 1px;
+	}
+
+	$remSize: $size / $context;
+
+	@if ($unit == true) {
+		@return $remSize * 1rem;
+	} @else {
+		@return $remSize;
+	}
+}
+
+
+// Convert Px to Em units (depends on $fs-body)
+// @access public
+// @param {String|Number} $size - size value ('16px', 16, 16px)
+// @param {String|Number} $context - context size value ('16px', 16, 16px)
+// @param {Boolean} $unit = true - set 'em' unit
+// @return {String} - value in em
+@function em($pixels, $context: null, $unit: true) {
+  	@if $context {
+	  $context: $context;
+	} @else {
+	  $context: $fs-body;
+	}
+
+	@if ($unit == true) {
+		$unit: 1em;
+	} @else {
+		$unit: 1;
+	}
+
+	@if (unitless($pixels)) {
+		$pixels: $pixels * 1px;
+	}
+
+	@if (unitless($context)) {
+		$context: $context * 1px;
+	}
+
+	@if unit($context) == 'em' {
+		@return ($pixels / (strip-unit($context) * $fs-body)) * 1em;
+	} @else {
+		@return ($pixels / $context) * $unit;
+	}
+}
+
+
+// Get Vertical Rhythm rem (depends on $lh-root)
+// @access public
+// @param {Number} $n - factor
+// @return {String} - value in rem
+@function vr($n) {
+	@return $lh-root * $n * 1rem;
+}

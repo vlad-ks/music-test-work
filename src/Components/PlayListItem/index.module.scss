@@ -1,0 +1,66 @@
+@import "src/scss/_common/common";
+
+.wrap {
+  display: flex;
+  align-items: center;
+
+  & + & {
+    margin-top: rem(20);
+
+    @include media('>=md') {
+      margin-top: rem(40);
+    }
+  }
+}
+
+.logo {
+  font-size: 0;
+  flex:  1 0 rem(48px);
+  max-width: rem(48px);
+  margin: 0 rem(16px) 0 0;
+
+  img {
+    font-size: rem(48px);
+    width: 1em;
+    height: 1em;
+    border-radius: 2em;
+  }
+}
+
+.text {
+  cursor: default;
+}
+
+.textTitle {
+  font-size: rem(16px);
+  font-weight: bold;
+  color: $color-white;
+  margin: 0 0 rem(8px);
+}
+
+.textDesc {
+  font-size: rem(10px);
+  color: $color-manatee;
+  margin: 0;
+}
+
+.time {
+  font-size: rem(12px);
+  cursor: default;
+  margin-left: auto;
+}
+
+.btn {
+  @extend %ex_res-btn;
+
+  display: inline-flex;
+  color: $color-fern;
+  font-size: rem(24px);
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+  cursor: pointer;
+  background: transparent;
+  padding: 0;
+  margin: 0 0 0 rem(24px);
+}

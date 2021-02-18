@@ -1,0 +1,22 @@
+@import "src/scss/_common/common";
+
+.wrap {}
+
+.title {
+  font-size: rem(28px);
+  font-weight: bold;
+  margin: 0 0 rem(16px) rem(20px);
+}
+
+.img {
+  text-align: center;
+  
+  @include media('>=sm') {
+    text-align: left;
+  }
+  
+  img {
+    max-height: rem(320px);
+    border-radius: rem(16px);
+  }
+}

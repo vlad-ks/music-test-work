@@ -1,0 +1,35 @@
+// Add multiple @font-face (.eot, .woff2, .woff, .ttf, .svg)
+// @access public
+// @param {String} $name - font-family
+// @param {String} $path - path to file !!without ext
+// @param {String|Number} $weight = 'null' - font-weight
+// @param {String} $style = 'null' - font-style
+// @param {List} $exts = 'eot woff2 woff ttf svg' - file extension
+@mixin font-include($name, $path, $weight: 400, $style: 'normal', $exts: eot woff2 woff ttf svg) {
+	$src: local('\263A');
+	$fileName: str-slice($path, _str-last-index($path, '/') + 1, str-length($path));
+
+	$extmods: (
+		eot: '?#iefix',
+		svg: '#' + str-replace($fileName, ' ', '_')
+	);
+
+	$formats: (
+		otf: 'opentype',
+		ttf: 'truetype'
+	);
+
+	@each $ext in $exts {
+		$extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+		$format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+		$src: append($src, url(quote($path + '.' + $extmod)) format(quote($format)), comma);
+	}
+
+	@font-face {
+		font-family: $name;
+		src: url(quote($path + '.eot'));
+		src: $src;
+		font-style: unquote($style);
+		font-weight: $weight;
+	}
+}

@@ -1,0 +1,255 @@
+//
+//  Flexbox Grid Generator
+//
+//  @param {String} $bp - Name of breakpoint
+//  @param {Number} $columns - Columns count
+//  @param {Css Val} $gutter-width - Columns gutter width
+//
+//
+//  for ".row":
+//      .dir-row-$bp  -  flex-direction row
+//      .dir-col-$bp  -  flex-direction column
+//      .dir-row-r-$bp  -  flex-direction row-reverse
+//      .dir-col-r-$bp  -  flex-direction column-reverse
+//
+//      .start-$bp  -  horizontal align start
+//      .center-$bp  -  horizontal align center
+//      .end-$bp  -  horizontal align end
+//      .top-$bp  -  vertical align top
+//
+//      .middle-$bp  -  vertical align middle
+//      .bottom-$bp  -  vertical align bottom
+//      .around-$bp  -  distribution around
+//      .between-$bp  -  distribution between
+//
+//@import "test";
+//  for ".col-" ($i - number of column):
+//      .col-$bp  -  auto-width
+//      .col-$bp-$i  -  width by breakpoint
+//
+//      .first-#{$bp}  -  position first
+//      .last-#{$bp}  -  position last
+//
+//
+
+@function get-gutter-compensation($w) {
+  @return ($w * 0.5) * -1;
+}
+
+@function get-gutter-half($w) {
+  @return $w * 0.5;
+}
+
+
+// helpers
+@mixin grid-row-compensation($w) {
+  margin-right: get-gutter-compensation($w);
+  margin-left: get-gutter-compensation($w);
+}
+
+@mixin grid-col-gutters($w) {
+  padding-right: get-gutter-half($w);
+  padding-left: get-gutter-half($w);
+}
+
+@mixin grid-row-mod($bp) {
+  .dir-row-#{$bp} {
+    flex-direction: row;
+  }
+
+  .dir-col-#{$bp} {
+    flex-direction: column;
+  }
+
+  .dir-row-r-#{$bp} {
+    flex-direction: row-reverse;
+  }
+
+  .dir-col-r-#{$bp} {
+    flex-direction: column-reverse;
+  }
+
+  .start-#{$bp} {
+    justify-content: flex-start;
+    text-align: start;
+  }
+
+  .center-#{$bp} {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .end-#{$bp} {
+    justify-content: flex-end;
+    text-align: end;
+  }
+
+  .top-#{$bp} {
+    align-items: flex-start;
+  }
+
+  .middle-#{$bp} {
+    align-items: center;
+  }
+
+  .bottom-#{$bp} {
+    align-items: flex-end;
+  }
+
+  .around-#{$bp} {
+    justify-content: space-around;
+  }
+
+  .between-#{$bp} {
+    justify-content: space-between;
+  }
+}
+
+
+// generate
+@mixin grid-row($gutter-width) {
+  box-sizing: border-box;
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  @include grid-row-compensation($gutter-width);
+}
+
+@mixin grid-gutters($gutter-width) {
+  .row {
+    @include grid-row-compensation($gutter-width);
+  }
+
+  [class^='col-'],
+  [class^='col-'][class*='-offset'] {
+    @include grid-col-gutters($gutter-width);
+  }
+}
+
+
+$prev-grid-gutter-width-val: null;
+$grid-col-common-init: false;
+
+@mixin grid-col($bp, $columns, $gutter-width) {
+  // create row common
+  @include grid-row-mod($bp);
+  //-----------------------------------
+
+  // create common
+
+  /* @todo: refactoring choose 'col-#{$bp}' (after all col generate) or '[class^='col-']'
+  [class*='col-#{$bp}'],
+  [class*='col-#{$bp}-offset'] {
+    box-sizing: border-box;
+    flex: 0 0 auto;
+
+    @include grid-col-gutters($gutter-width);
+  }
+  */
+  @if not ($grid-col-common-init) {
+    [class^='col-'],
+    [class^='col-'][class*='-offset'] {
+      box-sizing: border-box;
+      flex: 0 0 auto;
+    }
+  }
+
+  @if ($prev-grid-gutter-width-val != $gutter-width) {
+    [class^='col-'],
+    [class^='col-'][class*='-offset'] {
+      @include grid-col-gutters($gutter-width);
+    }
+  }
+
+  $grid-col-common-init: true !global;
+  $prev-grid-gutter-width-val: $gutter-width !global;
+  //-----------------------------------
+
+  // create col by bp
+  @for $i from 1 through $columns {
+    // create col
+    $size: 100% / ($columns / $i);
+
+    @if ($i == 1) {
+      .col-#{$bp} {
+        flex-grow: 1;
+        flex-basis: 0;
+        max-width: 100%;
+      }
+    }
+
+    .col-#{$bp}-#{$i} {
+      flex-basis: $size;
+      max-width: $size;
+    }
+    //-----------------------------------
+
+    // create col offset
+    $iPrev: $i - 1;
+    $size: 100% / ($columns / $iPrev);
+
+    .col-#{$bp}-offset-#{$iPrev} {
+      margin-left: $size;
+    }
+    //-----------------------------------
+  }
+  //-----------------------------------
+
+  // create col position
+  .first-#{$bp} {
+    order: -1;
+  }
+
+  .last-#{$bp} {
+    order: 1;
+  }
+  //-----------------------------------
+}
+
+@mixin grid-col-media($bp, $columns, $gutter-width) {
+  @include media('>#{$bp}') {
+    @content;
+
+    @include grid-col($bp, $columns, $gutter-width);
+  }
+}
+
+
+
+//
+// OTHERS
+// @refactoring: set common styles via extends
+
+@mixin grid-simple($col-name, $gutter) {
+  @include grid-simple-row($gutter);
+
+  #{$col-name} {
+    @include grid-simple-col($gutter);
+
+    @content;
+  }
+}
+
+@mixin grid-simple-row($gutter) {
+  $g-half: $gutter / 2;
+
+  box-sizing: border-box;
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: $g-half * -1;
+  margin-right: $g-half * -1;
+}
+
+@mixin grid-simple-col($gutter) {
+  $g-half: $gutter / 2;
+
+  flex: 0 0 auto;
+  box-sizing: border-box;
+
+  padding-left: $g-half;
+  padding-right: $g-half;
+}

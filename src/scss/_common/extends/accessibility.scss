@@ -1,0 +1,35 @@
+// Screen Reader Only
+@mixin ex_sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+%ex_sr-only {
+  @include ex_sr-only;
+}
+
+
+// Disable User Select
+@mixin ex_res-user-sel {
+  //line-height: normal;
+  cursor: default;
+  user-select: none;
+
+  appearance: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-touch-callout: none;
+
+  &::-ms-expand {
+    display: none;
+  }
+}
+
+%ex_res-user-sel {
+  @include ex_res-user-sel;
+}

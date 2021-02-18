@@ -1,0 +1,178 @@
+@import "src/scss/_common/common";
+
+
+.wrap {
+  background: $color-body;
+  padding: rem(16px);
+
+  @include media('>=lg') {
+    background: transparent;
+    padding: rem(40px) 0 0;
+  }
+}
+
+.wrapCollapse {
+  background: $color-body;
+
+  .wrapInner {
+    @include media('>=lg') {
+      transform: translateY(-50%);
+    }
+  }
+}
+
+.wrapInner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  transition: transform $ts-base;
+}
+
+.menuBtnWrap,
+.controls {
+  flex: 1 0 30%;
+  max-width: 30%;
+
+  @include media('>=md') {
+    flex: 1 0 auto;
+    max-width: none;
+  }
+}
+
+.menuBtnWrap {
+  @include media('>=lg') {
+    display: none;
+  }
+}
+
+.menuBtn {
+  @extend %ex_res-btn;
+
+  padding: rem(10px);
+  background: transparent;
+  color: $color-manatee;
+  line-height: 1;
+  font-size: 0;
+
+  :global {
+    .icon {
+      font-size: rem(24px);
+    }
+  }
+
+  &:hover {
+    color: $color-white;
+  }
+}
+
+.logoWrap {
+  line-height: 1;
+
+  @include media('>=md') {
+    display: none;
+  }
+
+  @include media('>=lg') {
+    display: inline-block;
+    flex: 1 0 rem($sidebar-width);
+    max-width: rem($sidebar-width);
+    padding-left: rem($main-cont_p-l);
+  }
+}
+
+.searchWrap {
+  flex: 1 0 100%;
+  max-width: 100%;
+  order: 4;
+  margin: rem(16px) 0 0;
+
+  @include media('>=md') {
+    flex: 1 0 auto;
+    order: inherit;
+    margin: 0 auto 0 0;
+  }
+
+  @include media('>=lg') {
+    padding-left: rem($main-cont_p-l);
+  }
+
+  @include media('>=xl') {
+    flex: 1 0 rem(488px);
+    max-width: rem(488px);
+  }
+}
+
+.controls {
+  @extend %ex_list-unstyled;
+
+  font-size: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 0;
+
+  @include media('>=lg') {
+    padding-right: rem($main-cont_p-r);
+  }
+}
+
+.controlsItem {
+  display: none;
+  margin: 0;
+
+  &:last-child {
+    display: inline-block;
+  }
+
+  & + & {
+    margin-left: rem(32px);
+  }
+
+  @include media('>=md') {
+    display: inline-block;
+  }
+}
+
+.controlsBtn {
+  @extend %ex_res-btn;
+
+  position: relative;
+  z-index: 1;
+  color: $color-manatee;
+  background: transparent;
+  line-height: 1;
+  padding: 0;
+  font-size: rem(24px);
+
+  span {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+
+    font-size: rem(8px);
+    width: 1em;
+    height: 1em;
+    background: $color-mandy;
+    border-radius: 2em;
+  }
+
+  &:hover {
+    color: $color-white;
+  }
+}
+
+.controlsBtnThumb {
+  font-size: 0;
+
+  img {
+    font-size: rem(48px);
+    width: 1em;
+    height: 1em;
+    min-width: 1em;
+    line-height: 1;
+    border-radius: 2rem;
+  }
+}

@@ -1,0 +1,22 @@
+// List UnStyled
+@mixin ex_list-unstyled {
+  padding-left: 0;
+
+  list-style: none;
+}
+
+%ex_list-unstyled {
+  @include ex_list-unstyled;
+}
+
+
+// List Reset Vertical Margin
+@mixin ex_list-mar-res-v {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+%ex_list-mar-res-v {
+  @include ex_list-mar-res-v;
+}
+

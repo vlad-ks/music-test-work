@@ -1,0 +1,100 @@
+// Reset Default Form Fields Stylesex_res-fields
+@mixin ex_res-fields {
+	border: 0;
+	border-radius: 0;
+	outline: none;
+	box-shadow: none;
+
+	appearance: none;
+}
+
+%ex_res-fields {
+	@include ex_res-fields;
+}
+
+
+// Reset Default Form SELECT Fields Styles
+@mixin ex_res-sel-field {
+	line-height: normal;
+
+	border: 0;
+	border-radius: 0;
+	outline: none;
+	box-shadow: none;
+
+	appearance: none;
+
+	&::-ms-expand {
+		display: none;
+	}
+}
+
+%ex_res-sel-field {
+	@include ex_res-sel-field;
+}
+
+
+// Reset Default TEXTAREA Styles
+@mixin ex_res-textarea {
+	overflow:auto;
+
+	resize: none;
+	cursor: pointer;
+	vertical-align:top;
+
+	border: 0;
+	border-radius: 0;
+	outline: none;
+	box-shadow: none;
+
+	appearance: none;
+}
+
+%ex_res-textarea {
+	@include ex_res-textarea;
+}
+
+
+// Remove X from input SEARCH
+@mixin ex_res-search-x {
+	/* clears the 'X' from Internet Explorer */
+	&::-ms-clear {
+		display: none;
+
+		width: 0;
+		height: 0;
+	}
+	&::-ms-reveal {
+		display: none;
+
+		width: 0;
+		height: 0;
+	}
+
+	/* clears the 'X' from Chrome */
+	&::-webkit-search-decoration,
+	&::-webkit-search-cancel-button,
+	&::-webkit-search-results-button,
+	&::-webkit-search-results-decoration {
+		display: none;
+	}
+}
+
+%ex_res-search-x {
+	@include ex_res-search-x;
+}
+
+
+// Input Hidden
+@mixin ex_input-hidden {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+%ex_input-hidden {
+	@include ex_input-hidden;
+}

@@ -1,0 +1,34 @@
+@import "src/scss/_common/common";
+
+.wrap {}
+
+.img {
+  text-align: center;
+  line-height: 1;
+  margin: 0 0 rem(16px);
+
+  img {
+    font-size: rem(88px);
+    width: 1em;
+    height: 1em;
+    border-radius: 2em;
+  }
+}
+
+.title {
+  display: block;
+  width: 100%;
+  white-space: normal;
+  font-size: rem(16px);
+  font-weight: bold;
+  text-align: center;
+  color: $color-white;
+  margin: 0 0 rem(4px);
+}
+
+.desc {
+  text-align: center;
+  font-size: rem(12px);
+  color: $color-manatee;
+  margin: 0;
+}
